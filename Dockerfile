@@ -1,7 +1,6 @@
 FROM python:latest
 
-LABEL repository="https://github.com/JSS95/docker-latex-matplotlib" \
-      maintainer="Jisoo Song <jeesoo9595@snu.ac.kr>"
+RUN pip install matplotlib
 
 RUN apt-get update && \
     apt-get install -y \
@@ -24,7 +23,13 @@ RUN tlmgr update --self && \
         cm-super \
         underscore \
         dvipng \
-        svg
+        svg \
+        catchfile \
+        xcolor \
+        transparent \
+        pgf
 
-RUN pip install matplotlib
 RUN python3 -c "import matplotlib.font_manager"
+
+LABEL repository="https://github.com/JSS95/docker-latex-matplotlib" \
+      maintainer="Jisoo Song <jeesoo9595@snu.ac.kr>"
