@@ -1,8 +1,12 @@
-FROM python:3
+FROM python:latest
+
+LABEL repository="https://github.com/JSS95/docker-latex-matplotlib" \
+      maintainer="Jisoo Song <jeesoo9595@snu.ac.kr>"
 
 RUN apt-get update && \
     apt-get install -y \
-        ffmpeg
+        ffmpeg \
+        inkscape
 
 # Install TeXLive
 RUN cd /tmp && \
@@ -19,7 +23,8 @@ RUN tlmgr update --self && \
         type1cm \
         cm-super \
         underscore \
-        dvipng
+        dvipng \
+        svg
 
 RUN pip install matplotlib
 RUN python3 -c "import matplotlib.font_manager"
